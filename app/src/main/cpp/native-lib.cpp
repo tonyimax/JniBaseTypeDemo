@@ -88,3 +88,76 @@ Java_com_example_jnibasetypedemo_MainActivity_JNIGetIntArrayDate(JNIEnv *env, jo
     env->SetIntArrayRegion(arr,0,len,buf);//复制数据到数组
     return arr;
 }
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getIntValueFromJNI(JNIEnv *env, jobject thiz) {
+    // TODO: implement getIntValueFromJNI()
+    jint val = 111111;
+    return val;
+}
+extern "C"
+JNIEXPORT jboolean JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getBoolValueFromJNI(JNIEnv *env, jobject thiz) {
+    // TODO: implement getBoolValueFromJNI()
+    jboolean _bool = true;
+    return _bool;
+}
+extern "C"
+JNIEXPORT jbyte JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getByteValueFromJNI(JNIEnv *env, jobject thiz) {
+    // TODO: implement getByteValueFromeJNI()
+    jbyte  _byte = 0xf0;
+    return _byte;
+
+}
+extern "C"
+JNIEXPORT jchar JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getCharValueFromJNI(JNIEnv *env, jobject thiz) {
+    // TODO: implement getCharValueFromJNI()
+    jchar  _char = 'a';
+    return _char;
+}
+extern "C"
+JNIEXPORT jshort JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getShortValueFromJNI(JNIEnv *env, jobject thiz) {
+    // TODO: implement getShortValueFromJNI()
+    jshort  _short = 0xFFFFFF;
+    return _short;
+}
+extern "C"
+JNIEXPORT jlong JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getLongValueFromJNI(JNIEnv *env, jobject thiz) {
+    // TODO: implement getLongValueFromJNI()
+    jlong _long = 0xFFFFFFFF;
+    return _long;
+}
+extern "C"
+JNIEXPORT jfloat JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getFloatValueFromJNI(JNIEnv *env, jobject thiz) {
+    // TODO: implement getFloatValueFromJNI()
+    float _float=0.9999f;
+    return _float;
+}
+extern "C"
+JNIEXPORT jdouble JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getDoubleValueFromJNI(JNIEnv *env, jobject thiz) {
+    // TODO: implement getDoubleValueFromJNI()
+    double _double=0.9090909090;
+    return _double;
+}
+
+
+extern "C"
+JNIEXPORT jobject JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getObjectValueFromJNI(JNIEnv *env, jobject thiz) {
+    // TODO: implement getObjectValueFromJNI()
+}
+
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getStringValueFromJNI(JNIEnv *env, jobject thiz) {
+    // TODO: implement getStringValueFromJNI()
+    jstring _string = env->NewStringUTF("HelloWorld");
+    return _string;
+}

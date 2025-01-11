@@ -46,4 +46,28 @@ public class MainActivity extends AppCompatActivity {
     public native int JNIReadIntArrayData(int[] arrInt);
 
     public native int[] JNIGetIntArrayDate();
+
+
+
+    public native boolean getBoolValueFromJNI();
+
+    public native byte getByteValueFromJNI();
+
+    public native char getCharValueFromJNI();
+
+    public native short getShortValueFromJNI();
+
+    public native int getIntValueFromJNI();
+
+    public native long getLongValueFromJNI();
+
+    public native float getFloatValueFromJNI();
+
+    public native double getDoubleValueFromJNI();
+
+    public native String getStringValueFromJNI();
+
+    public native Object getObjectValueFromJNI();
+
+
 }
