@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import com.example.jnibasetypedemo.databinding.ActivityMainBinding;
 
+import java.util.Arrays;
+
+
 public class MainActivity extends AppCompatActivity {
 
     // Used to load the 'jnibasetypedemo' library on application startup.
@@ -33,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
         for (int x:JNIGetIntArrayDate()){
             System.out.println("===>get int val from JNI return IntArray： " +x);
         }
+
+        Animal[] animals = new Animal[30];
+        for (int i = 0; i < 30; i++) {
+            Animal ani = new Animal();
+            ani.setName("animal name"+(i+1));
+            animals[i]=ani;
+        }
+        getAnimalsNameFromJNI(animals);
     }
 
     /**
@@ -68,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     public native String getStringValueFromJNI();
 
     public native Object getObjectValueFromJNI();
+
+    public native void getAnimalsNameFromJNI(Animal[] animals);
 
 
 }

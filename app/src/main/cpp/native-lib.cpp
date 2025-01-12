@@ -27,6 +27,11 @@ Java_com_example_jnibasetypedemo_MainActivity_stringFromJNI(
         JNIEnv* env,
         jobject /* this */) {
     std::string hello = "Hello from C++";
+    int x[] = {};
+    double y[]={};
+    bool z[] ={};
+    char c[] = {};
+    short s[]={};
     return env->NewStringUTF(hello.c_str());
 }
 extern "C"
@@ -160,4 +165,35 @@ Java_com_example_jnibasetypedemo_MainActivity_getStringValueFromJNI(JNIEnv *env,
     // TODO: implement getStringValueFromJNI()
     jstring _string = env->NewStringUTF("HelloWorld");
     return _string;
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getAnimalsNameFromJNI(JNIEnv *env, jobject thiz,
+                                                               jobjectArray animals) {
+    jobject animalObj;
+    int len = env->GetArrayLength(animals);//获取数组长度
+    jclass animalClass = env->FindClass("com/example/jnibasetypedemo/Animal");//获取类对象
+    //获取类字段
+    jfieldID animalClassNameFiels = env->GetFieldID(animalClass, //类对象
+                                   "name", //字段名
+                                   "Ljava/lang/String;");//字段签名
+    jstring _jni_string;
+    const char *cplusplus_string;
+    //遍历数组
+    for (int i = 0; i < len; ++i) {
+        animalObj = env->GetObjectArrayElement(animals, i);//取得元素
+        //取类对象字段
+        _jni_string = (jstring) (env->GetObjectField(animalObj, //类对象
+                                              animalClassNameFiels));//类对字段对象
+        //jstring转char*
+        cplusplus_string = env->GetStringUTFChars(_jni_string, NULL);
+        if (cplusplus_string == NULL) {
+            continue;
+        }
+        LOGD("===>Animal类字段name值:%s", cplusplus_string);
+        //释放内存
+        env->ReleaseStringUTFChars(_jni_string, cplusplus_string);
+    }
 }
