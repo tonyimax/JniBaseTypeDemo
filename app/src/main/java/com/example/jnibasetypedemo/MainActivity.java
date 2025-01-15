@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
             animals[i]=ani;
         }
         getAnimalsNameFromJNI(animals);
+
+        OneKeyVideoExport obj= getOneKeyVideoExportObjectFromJNI();
+        System.out.println("===> percent:"+obj.percent +" mode:"+ obj.assaint_mode+" state:"+obj.assaint_state);
     }
 
     /**
@@ -81,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
     public native Object getObjectValueFromJNI();
 
     public native void getAnimalsNameFromJNI(Animal[] animals);
+
+    public native OneKeyVideoExport getOneKeyVideoExportObjectFromJNI();
 
 
 }

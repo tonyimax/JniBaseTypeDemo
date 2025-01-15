@@ -22,6 +22,13 @@
 #define LOGI(...)
 #endif
 
+struct OneKeyVideoExport {
+    //jvm 不支持uint32_t
+    int32_t percent;
+    int32_t assaint_mode;
+    int32_t assaint_state;
+};
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_jnibasetypedemo_MainActivity_stringFromJNI(
         JNIEnv* env,
@@ -196,4 +203,32 @@ Java_com_example_jnibasetypedemo_MainActivity_getAnimalsNameFromJNI(JNIEnv *env,
         //释放内存
         env->ReleaseStringUTFChars(_jni_string, cplusplus_string);
     }
+}
+extern "C"
+JNIEXPORT jobject JNICALL
+Java_com_example_jnibasetypedemo_MainActivity_getOneKeyVideoExportObjectFromJNI(JNIEnv *env, jobject thiz) {
+    OneKeyVideoExport _one{0};
+    _one.percent=90;
+    _one.assaint_mode=1;
+    _one.assaint_state=2;
+
+    jclass clazz = env->FindClass("com/example/jnibasetypedemo/OneKeyVideoExport");
+    jmethodID constructor = env->GetMethodID(clazz, "<init>", "()V");
+    jobject jobj = env->NewObject(clazz, constructor);
+    // 注意：这里的jobj是一个局部引用，如果你需要全局引用，请使用
+    // jobject globalRef = env->NewGlobalRef(jobj);
+
+    jfieldID percent = env->GetFieldID(clazz, "percent", "I");
+    jfieldID assaint_mode = env->GetFieldID(clazz, "assaint_mode", "I");
+    jfieldID assaint_state = env->GetFieldID(clazz, "assaint_state", "I");
+    jobject OneKeyVideoExport_JavaObject = env->AllocObject(clazz);
+    env->SetIntField(OneKeyVideoExport_JavaObject, percent, _one.percent);
+    env->SetIntField(OneKeyVideoExport_JavaObject, assaint_mode, _one.assaint_mode);
+    env->SetIntField(OneKeyVideoExport_JavaObject, assaint_state, _one.assaint_state);
+
+    env->DeleteLocalRef(jobj);
+    //env->DeleteGlobalRef(globalRef);
+    env->DeleteLocalRef(clazz);
+
+    return OneKeyVideoExport_JavaObject;
 }
